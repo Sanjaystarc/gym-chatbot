@@ -10,7 +10,7 @@ app.use(cors());
 
 // Initialize Gemini
 // The API key is loaded from the .env file (which we will make next)
-const genAI = new GoogleGenAI({apiKey: process.env.GEMINI_API_KEY});
+const genAI = new GoogleGenAI(process.env.GEMINI_API_KEY);
 //
 // --- 🏋️ CUSTOMIZE THIS PART ---
 // This is the "system prompt" that defines the bot's job.
