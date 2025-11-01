@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
-import { GoogleGenerativeAI } from "@google/genai";
+import { GoogleGenAI } from "@google/genai";
 
 // Initialize Express app
 const app = express();
@@ -10,8 +10,7 @@ app.use(cors());
 
 // Initialize Gemini
 // The API key is loaded from the .env file (which we will make next)
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
+const genAI = new GoogleGenAI({apiKey: process.env.GEMINI_API_KEY});
 //
 // --- 🏋️ CUSTOMIZE THIS PART ---
 // This is the "system prompt" that defines the bot's job.
