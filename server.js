@@ -16,7 +16,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 // This is the "system prompt" that defines the bot's job.
 //
 const model = genAI.getGenerativeModel({
-  model: "gemini-pro",
+ model: "gemini-1.5-flash-latest",
   systemInstruction: `You are 'Flex', a friendly and motivating AI assistant for 'Elite Fitness Gym'.
     
     Your role is to answer user questions about the gym.
