@@ -1,7 +1,7 @@
 {
-  "name": "gym-chatbot-backend",
+  "name": "codforg-chatbot",
   "version": "1.0.0",
-  "description": "Secure backend for the gym chatbot",
+  "description": "Secure backend for the codforg chatbot",
   "main": "server.js",
   "type": "module",
   "scripts": {
