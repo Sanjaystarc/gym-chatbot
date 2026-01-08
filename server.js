@@ -54,7 +54,7 @@ app.post("/api/chat", async (req, res) => {
     const result = await chat.sendMessage(message);
     const response = result.response;
 
-    res.json({ reply: response.text() });
+    res.json({ reply: response.text });
 
   } catch (error) {
     console.error("Error in /api/chat:", error);
@@ -64,6 +64,6 @@ app.post("/api/chat", async (req, res) => {
 
 // Start the server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server listening on port ${PORT}`);
 });
