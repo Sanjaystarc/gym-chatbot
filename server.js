@@ -64,4 +64,16 @@ app.post("/api/chat", async (req, res) => {
     res.json({ reply });
 
   } catch (error) {
-    console.error("
+    console.error("🔥 Gemini API error:", error);
+
+    res.status(500).json({
+      error: "AI service unavailable. Please try again shortly."
+    });
+  }
+});
+
+/* Server */
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
