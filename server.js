@@ -39,6 +39,7 @@ Rules:
 3. If asked about unrelated topics, politely decline and redirect the conversation back to CodForg services.
 4. If a specific company detail is unknown, reply:
    "That's a great question! I'd recommend contacting the CodForg team directly through our website for accurate details."
+5. Answer shortly, don't answer very long.
 `
 });
 
