@@ -9,11 +9,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+/* Validate API key early */
+if (!process.env.GEMINI_API_KEY) {
+  console.error("❌ GEMINI_API_KEY is missing");
+}
+
 /* Gemini setup */
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 const model = genAI.getGenerativeModel({
-  model: "gemini-2.0-flash",
+  model: "gemini-2.5-flash",
   systemInstruction: `
 You are "Forge", a friendly, knowledgeable, and professional AI assistant for CodForg.
 
@@ -37,32 +42,26 @@ Rules:
 `
 });
 
-/* API route */
+/* API Route */
 app.post("/api/chat", async (req, res) => {
   try {
     const { message } = req.body;
+    console.log("➡️ User message:", message);
 
-    if (!message) {
-      return res.status(400).json({ error: "Message is required" });
+    if (!message || typeof message !== "string") {
+      return res.status(400).json({ error: "Invalid message" });
     }
 
     const chat = model.startChat();
     const result = await chat.sendMessage(message);
 
-    res.json({
-      reply: result.response.text()
-    });
+    const reply =
+      result?.response?.text?.()?.trim() ||
+      "Hi 👋 How can I help you with CodForg today?";
+
+    console.log("✅ Gemini reply:", reply);
+
+    res.json({ reply });
 
   } catch (error) {
-    console.error("Chat error:", error);
-    res.status(500).json({
-      error: "Internal server error"
-    });
-  }
-});
-
-/* Server */
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`✅ Server running on port ${PORT}`);
-});
+    console.error("
